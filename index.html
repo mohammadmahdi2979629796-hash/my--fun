@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>یک سوال مهم!</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Tahoma', 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        h1 {
+            color: #333;
+            font-size: 24px;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #45a049;
+            transform: scale(1.05);
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            position: relative;
+            transition: all 0.15s ease;
+        }
+
+        /* استایل پیام نهایی */
+        .success-message {
+            display: none;
+            font-size: 22px;
+            color: #2e7d32;
+            font-weight: bold;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container" id="mainCard">
+        <h1 id="questionText">آیا من جذاب‌ترین فردی هستم که تا حالا دیدی؟ 😜</h1>
+        
+        <div class="btn-group" id="btnGroup">
+            <button id="yesBtn" onclick="acceptAnswer()">بله 😍</button>
+            <button id="noBtn" onmouseover="escapeButton()" onclick="escapeButton()" ontouchstart="escapeButton()">خیر 😅</button>
+        </div>
+
+        <div class="success-message" id="successMsg">
+           تبریک میگم تو به کسایی که منو دوست دارن اضافه شدی امیدوارم توی بدست آوزدن دل من موفق باشی! ❤️🎉
+        </div>
+    </div>
+
+    <script>
+        function escapeButton() {
+            const noBtn = document.getElementById('noBtn');
+            
+            // محاسبه موقعیت‌های تصادفی در صفحه
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth - 40);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight - 40);
+
+            // تغییر موقعیت دکمه به تمام صفحه
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = `${Math.max(20, x)}px`;
+            noBtn.style.top = `${Math.max(20, y)}px`;
+        }
+
+        function acceptAnswer() {
+            // مخفی کردن سوال و دکمه‌ها و نمایش پیام موفقیت
+            document.getElementById('questionText').style.display = 'none';
+            document.getElementById('btnGroup').style.display = 'none';
+            document.getElementById('successMsg').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
